@@ -1,5 +1,5 @@
 /**
- * MedAssist - Main JavaScript File
+ * WellNow - Main JavaScript File
  * Contains general functionality used across the site
  */
 

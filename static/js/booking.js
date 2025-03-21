@@ -1,5 +1,5 @@
 /**
- * MedAssist - Appointment Booking JavaScript
+ * WellNow - Appointment Booking JavaScript
  * Handles appointment scheduling functionality
  */
 

@@ -1,5 +1,5 @@
 /**
- * MedAssist - Chatbot JavaScript
+ * WellNow - Chatbot JavaScript
  * Handles the chatbot interaction and message processing
  */
 
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Handle initial greeting
     const initialMessages = [
-        "Hello! I'm your MedAssist virtual assistant. How can I help you today?",
+        "Hello! I'm your WellNow virtual assistant. How can I help you today?",
         "Need help finding a doctor?",
         "You can ask about appointments, medications, or emergency services."
     ];

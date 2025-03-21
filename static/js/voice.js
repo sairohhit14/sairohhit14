@@ -1,5 +1,5 @@
 /**
- * MedAssist - Voice Recognition JavaScript
+ * WellNow - Voice Recognition JavaScript
  * Handles speech recognition for the chatbot
  */
 
