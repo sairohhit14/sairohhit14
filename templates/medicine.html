@@ -1,0 +1,283 @@
+{% extends 'base.html' %}
+
+{% block title %}MedAssist - Order Medicine{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <h1 class="text-center mb-4">Medicine Ordering</h1>
+        <p class="lead text-center mb-5">Order prescription and over-the-counter medications with home delivery</p>
+        
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Medicine Categories -->
+                <div class="card shadow border-0 mb-4">
+                    <div class="card-body p-4">
+                        <h3 class="card-title mb-4">Browse Medicines</h3>
+                        
+                        <div class="mb-4">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search medicines..." id="medicineSearch">
+                                <button class="btn btn-primary" type="button" id="searchButton">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <ul class="nav nav-tabs mb-4" id="medicineTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" type="button" role="tab" aria-controls="all" aria-selected="true">All</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="prescription-tab" data-bs-toggle="tab" data-bs-target="#prescription" type="button" role="tab" aria-controls="prescription" aria-selected="false">Prescription</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="otc-tab" data-bs-toggle="tab" data-bs-target="#otc" type="button" role="tab" aria-controls="otc" aria-selected="false">Over-the-Counter</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="supplements-tab" data-bs-toggle="tab" data-bs-target="#supplements" type="button" role="tab" aria-controls="supplements" aria-selected="false">Supplements</button>
+                            </li>
+                        </ul>
+                        
+                        <div class="tab-content" id="medicineTabContent">
+                            <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+                                <div class="row" id="medicineList">
+                                    <!-- Medicine listings will be loaded here via JavaScript -->
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card h-100">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Amoxicillin</h5>
+                                                <p class="card-text">Antibiotic for bacterial infections</p>
+                                                <p class="fw-bold">$12.99</p>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div class="input-group input-group-sm w-50">
+                                                        <button class="btn btn-outline-secondary" type="button" data-action="decrease">-</button>
+                                                        <input type="number" class="form-control text-center" value="1" min="1" max="10" data-medicine-id="1">
+                                                        <button class="btn btn-outline-secondary" type="button" data-action="increase">+</button>
+                                                    </div>
+                                                    <button class="btn btn-primary btn-sm add-to-cart" data-medicine-id="1" data-medicine-name="Amoxicillin" data-medicine-price="12.99">
+                                                        <i class="fas fa-cart-plus me-1"></i> Add
+                                                    </button>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <span class="badge bg-info">Prescription needed</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card h-100">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Lisinopril</h5>
+                                                <p class="card-text">Used for high blood pressure</p>
+                                                <p class="fw-bold">$15.50</p>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div class="input-group input-group-sm w-50">
+                                                        <button class="btn btn-outline-secondary" type="button" data-action="decrease">-</button>
+                                                        <input type="number" class="form-control text-center" value="1" min="1" max="10" data-medicine-id="2">
+                                                        <button class="btn btn-outline-secondary" type="button" data-action="increase">+</button>
+                                                    </div>
+                                                    <button class="btn btn-primary btn-sm add-to-cart" data-medicine-id="2" data-medicine-name="Lisinopril" data-medicine-price="15.50">
+                                                        <i class="fas fa-cart-plus me-1"></i> Add
+                                                    </button>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <span class="badge bg-info">Prescription needed</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tab-pane fade" id="prescription" role="tabpanel" aria-labelledby="prescription-tab">
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle me-2"></i> Prescription medications require a valid prescription from a healthcare provider.
+                                </div>
+                                <!-- Prescription medicines will be loaded here -->
+                            </div>
+                            
+                            <div class="tab-pane fade" id="otc" role="tabpanel" aria-labelledby="otc-tab">
+                                <!-- OTC medicines will be loaded here -->
+                            </div>
+                            
+                            <div class="tab-pane fade" id="supplements" role="tabpanel" aria-labelledby="supplements-tab">
+                                <!-- Supplements will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Prescription Upload -->
+                <div class="card shadow border-0 mb-4">
+                    <div class="card-body p-4">
+                        <h3 class="card-title mb-4">Upload Prescription</h3>
+                        <p>For prescription medications, please upload your prescription here:</p>
+                        
+                        <form id="prescriptionForm">
+                            <div class="mb-3">
+                                <label for="prescriptionFile" class="form-label">Prescription Document</label>
+                                <input class="form-control" type="file" id="prescriptionFile" accept=".pdf,.jpg,.jpeg,.png">
+                                <div class="form-text">Accepted formats: PDF, JPG, PNG. Max size: 5MB</div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="prescriptionNotes" class="form-label">Additional Notes (Optional)</label>
+                                <textarea class="form-control" id="prescriptionNotes" rows="2" placeholder="Any specific instructions for the pharmacist"></textarea>
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-outline-primary">
+                                    <i class="fas fa-upload me-2"></i> Upload Prescription
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <!-- Shopping Cart -->
+                <div class="card shadow border-0 mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0"><i class="fas fa-shopping-cart me-2"></i> Your Cart</h4>
+                    </div>
+                    <div class="card-body p-4">
+                        <div id="cartItems">
+                            <p class="text-center text-muted my-4">Your cart is empty</p>
+                            <!-- Cart items will be loaded here via JavaScript -->
+                        </div>
+                        
+                        <hr>
+                        
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Subtotal:</span>
+                            <span id="subtotal">$0.00</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Delivery Fee:</span>
+                            <span id="deliveryFee">$5.00</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2 fw-bold">
+                            <span>Total:</span>
+                            <span id="totalPrice">$5.00</span>
+                        </div>
+                        
+                        <div class="d-grid mt-4">
+                            <button class="btn btn-primary btn-lg" id="checkoutBtn" disabled>
+                                <i class="fas fa-credit-card me-2"></i> Proceed to Checkout
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Order Form -->
+                <div class="card shadow border-0 d-none" id="checkoutForm">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0"><i class="fas fa-clipboard-list me-2"></i> Checkout</h4>
+                    </div>
+                    <div class="card-body p-4">
+                        <form id="orderForm">
+                            <div class="mb-3">
+                                <label for="deliveryAddress" class="form-label">Delivery Address</label>
+                                <textarea class="form-control" id="deliveryAddress" rows="3" required></textarea>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="contactPhone" class="form-label">Contact Phone</label>
+                                <input type="tel" class="form-control" id="contactPhone" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Payment Method</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="paymentCard" checked>
+                                    <label class="form-check-label" for="paymentCard">
+                                        <i class="fas fa-credit-card me-2"></i> Credit/Debit Card
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="paymentCash">
+                                    <label class="form-check-label" for="paymentCash">
+                                        <i class="fas fa-money-bill-wave me-2"></i> Cash on Delivery
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="card-payment mb-3" id="cardPaymentSection">
+                                <div class="mb-3">
+                                    <label for="cardNumber" class="form-label">Card Number</label>
+                                    <input type="text" class="form-control" id="cardNumber" placeholder="**** **** **** ****">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="cardExpiry" class="form-label">Expiry Date</label>
+                                        <input type="text" class="form-control" id="cardExpiry" placeholder="MM/YY">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="cardCVC" class="form-label">CVC</label>
+                                        <input type="text" class="form-control" id="cardCVC" placeholder="***">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-success btn-lg">
+                                    <i class="fas fa-check-circle me-2"></i> Place Order
+                                </button>
+                            </div>
+                        </form>
+                        
+                        <!-- Success Message -->
+                        <div class="alert alert-success mt-4 d-none" id="orderSuccess">
+                            <i class="fas fa-check-circle me-2"></i> Your order has been placed successfully! 
+                            <p class="mt-2 mb-0">Order ID: <span id="orderId">ORD123456</span></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Info Card -->
+                <div class="card shadow border-0 mt-4">
+                    <div class="card-body p-4">
+                        <h4 class="card-title">Delivery Information</h4>
+                        <ul class="list-unstyled">
+                            <li class="d-flex mb-3">
+                                <div class="feature-icon bg-primary text-white rounded-circle me-3">
+                                    <i class="fas fa-truck"></i>
+                                </div>
+                                <div>
+                                    <h6>Fast Delivery</h6>
+                                    <p class="text-muted">Medicines delivered within 24-48 hours</p>
+                                </div>
+                            </li>
+                            <li class="d-flex mb-3">
+                                <div class="feature-icon bg-primary text-white rounded-circle me-3">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div>
+                                    <h6>Verified Medications</h6>
+                                    <p class="text-muted">All medicines are sourced from licensed pharmacies</p>
+                                </div>
+                            </li>
+                            <li class="d-flex">
+                                <div class="feature-icon bg-primary text-white rounded-circle me-3">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h6>Delivery Areas</h6>
+                                    <p class="text-muted">Available in most metropolitan areas</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/medicine.js') }}"></script>
+{% endblock %}

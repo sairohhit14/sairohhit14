@@ -1,0 +1,217 @@
+{% extends 'base.html' %}
+
+{% block title %}MedAssist - Your Comprehensive Healthcare Companion{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">Your Complete Healthcare Solution</h1>
+                <p class="lead mb-4">Access medical services, consultations, emergency help, and personalized care - all in one place.</p>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4">
+                    <a href="{{ url_for('booking') }}" class="btn btn-light btn-lg px-4 me-md-2">Book Consultation</a>
+                    <a href="{{ url_for('doctors') }}" class="btn btn-outline-light btn-lg px-4">Find Doctors</a>
+                </div>
+            </div>
+            <div class="col-lg-6 d-none d-lg-block text-center">
+                <svg width="500" height="300" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="100%" height="100%" fill="none"/>
+                    <circle cx="300" cy="200" r="150" fill="#ffffff" opacity="0.2"/>
+                    <path d="M300,100 L300,300 M200,200 L400,200" stroke="#ffffff" stroke-width="40" stroke-linecap="round"/>
+                    <path d="M300,100 C380,140 380,260 300,300 C220,260 220,140 300,100" fill="#ffffff" opacity="0.3"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="services py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Our Services</h2>
+            <p class="text-muted">Comprehensive healthcare solutions at your fingertips</p>
+        </div>
+        
+        <div class="row g-4">
+            <!-- Report Scanning -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow border-0">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon bg-primary bg-gradient text-white rounded-circle mb-3">
+                            <i class="fas fa-file-medical fa-2x"></i>
+                        </div>
+                        <h3 class="card-title">Report Scanning</h3>
+                        <p class="card-text">Upload your medical reports for digital storage and analysis. Get insights on your health data.</p>
+                        <a href="{{ url_for('report') }}" class="btn btn-primary">Scan Your Reports</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Consultation Booking -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow border-0">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon bg-primary bg-gradient text-white rounded-circle mb-3">
+                            <i class="fas fa-calendar-check fa-2x"></i>
+                        </div>
+                        <h3 class="card-title">Consultation Booking</h3>
+                        <p class="card-text">Schedule appointments with specialists. Choose between online and in-person consultations.</p>
+                        <a href="{{ url_for('booking') }}" class="btn btn-primary">Book Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Medicine Ordering -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow border-0">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon bg-primary bg-gradient text-white rounded-circle mb-3">
+                            <i class="fas fa-pills fa-2x"></i>
+                        </div>
+                        <h3 class="card-title">Medicine Ordering</h3>
+                        <p class="card-text">Order prescription and over-the-counter medications with convenient home delivery.</p>
+                        <a href="{{ url_for('medicine') }}" class="btn btn-primary">Order Medicines</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Doctor Search -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow border-0">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon bg-primary bg-gradient text-white rounded-circle mb-3">
+                            <i class="fas fa-user-md fa-2x"></i>
+                        </div>
+                        <h3 class="card-title">Doctor Search</h3>
+                        <p class="card-text">Find qualified healthcare professionals in your area. Filter by specialty and location.</p>
+                        <a href="{{ url_for('doctors') }}" class="btn btn-primary">Find Doctors</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Emergency Services -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow border-0">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon bg-danger bg-gradient text-white rounded-circle mb-3">
+                            <i class="fas fa-ambulance fa-2x"></i>
+                        </div>
+                        <h3 class="card-title">Emergency Services</h3>
+                        <p class="card-text">Quick access to emergency contacts and guidance for critical situations.</p>
+                        <a href="{{ url_for('emergency') }}" class="btn btn-danger">Emergency Help</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- AI Chatbot -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow border-0">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon bg-primary bg-gradient text-white rounded-circle mb-3">
+                            <i class="fas fa-robot fa-2x"></i>
+                        </div>
+                        <h3 class="card-title">AI Health Assistant</h3>
+                        <p class="card-text">Get answers to common health questions with our voice-enabled AI assistant.</p>
+                        <button id="openChatbotFromCard" class="btn btn-primary">Chat Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us Section -->
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <div class="text-center text-lg-start">
+                    <h2 class="fw-bold mb-4">Why Choose MedAssist?</h2>
+                    <div class="d-flex mb-3">
+                        <div class="feature-icon bg-primary text-white rounded-circle me-3">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div>
+                            <h5>Comprehensive Care</h5>
+                            <p>All your healthcare needs in one platform - from consultations to medication delivery.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex mb-3">
+                        <div class="feature-icon bg-primary text-white rounded-circle me-3">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div>
+                            <h5>24/7 Accessibility</h5>
+                            <p>Access healthcare services anytime, anywhere with our round-the-clock platform.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex mb-3">
+                        <div class="feature-icon bg-primary text-white rounded-circle me-3">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div>
+                            <h5>Qualified Professionals</h5>
+                            <p>Connect with licensed healthcare providers and specialists across various fields.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <div class="feature-icon bg-primary text-white rounded-circle me-3">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div>
+                            <h5>Advanced Technology</h5>
+                            <p>Leveraging AI and digital tools for better healthcare delivery and management.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="p-4 bg-white shadow rounded-3">
+                    <div class="testimonial text-center">
+                        <svg class="text-primary mb-3" width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 7L2 12L10 17V7Z" fill="currentColor"/>
+                            <path d="M22 7L14 12L22 17V7Z" fill="currentColor"/>
+                        </svg>
+                        <p class="lead mb-4">"MedAssist transformed how I manage my healthcare. From booking appointments to ordering medications, everything is seamless and convenient. The chatbot is surprisingly helpful!"</p>
+                        <div class="d-flex justify-content-center">
+                            <div class="feature-icon bg-primary bg-gradient text-white rounded-circle">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        <p class="fw-bold mt-2 mb-0">Sarah Johnson</p>
+                        <p class="text-muted">Patient</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="cta bg-primary text-white py-5">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-3">Ready to take control of your health?</h2>
+        <p class="lead mb-4">Join thousands of users who trust MedAssist for their healthcare needs</p>
+        <button class="btn btn-light btn-lg px-4" id="startChatbot">Chat with our AI Assistant</button>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Open chatbot from card button
+        document.getElementById('openChatbotFromCard').addEventListener('click', function() {
+            document.getElementById('chatbotToggle').click();
+        });
+
+        // Open chatbot from CTA button
+        document.getElementById('startChatbot').addEventListener('click', function() {
+            document.getElementById('chatbotToggle').click();
+        });
+    });
+</script>
+{% endblock %}

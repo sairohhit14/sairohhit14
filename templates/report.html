@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+
+{% block title %}MedAssist - Medical Report Scanning{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <h1 class="text-center mb-4">Medical Report Scanning</h1>
+        <p class="lead text-center mb-5">Upload and analyze your medical reports for digital storage and insights</p>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow border-0">
+                    <div class="card-body p-4">
+                        <h3 class="card-title mb-4">Upload Your Medical Report</h3>
+                        
+                        <form id="reportUploadForm" enctype="multipart/form-data">
+                            <div class="mb-4">
+                                <label for="reportType" class="form-label">Report Type</label>
+                                <select class="form-select" id="reportType" required>
+                                    <option value="" selected disabled>Select report type</option>
+                                    <option value="blood_test">Blood Test</option>
+                                    <option value="xray">X-Ray Report</option>
+                                    <option value="mri">MRI Scan</option>
+                                    <option value="ct_scan">CT Scan</option>
+                                    <option value="ultrasound">Ultrasound</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="reportDate" class="form-label">Report Date</label>
+                                <input type="date" class="form-control" id="reportDate" required>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="description" class="form-label">Description (Optional)</label>
+                                <textarea class="form-control" id="description" rows="3" placeholder="Add any notes or description about this report"></textarea>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="report_file" class="form-label">Upload File</label>
+                                <input class="form-control" type="file" id="report_file" name="report_file" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" required>
+                                <div class="form-text">Accepted formats: PDF, JPG, PNG, DOC, DOCX. Max size: 10MB</div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="shareWithDoctor">
+                                    <label class="form-check-label" for="shareWithDoctor">
+                                        Share with my doctor
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg" id="uploadButton">
+                                    <i class="fas fa-upload me-2"></i> Upload Report
+                                </button>
+                            </div>
+                        </form>
+                        
+                        <!-- Upload Status -->
+                        <div class="mt-4 d-none" id="uploadStatus">
+                            <div class="progress mb-3">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%" id="uploadProgressBar"></div>
+                            </div>
+                            <p class="text-center" id="uploadStatusText">Uploading your report...</p>
+                        </div>
+                        
+                        <!-- Success Message -->
+                        <div class="alert alert-success mt-4 d-none" id="uploadSuccess">
+                            <i class="fas fa-check-circle me-2"></i> Your report has been uploaded successfully!
+                        </div>
+                        
+                        <!-- Error Message -->
+                        <div class="alert alert-danger mt-4 d-none" id="uploadError">
+                            <i class="fas fa-exclamation-circle me-2"></i> <span id="errorMessage">An error occurred during upload.</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card shadow border-0 mt-4">
+                    <div class="card-body p-4">
+                        <h3 class="card-title mb-4">Recently Uploaded Reports</h3>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Report Type</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="reportsTable">
+                                    <!-- Reports will be loaded here via JavaScript -->
+                                    <tr>
+                                        <td colspan="4" class="text-center">No reports uploaded yet</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="card shadow border-0 mb-4">
+                    <div class="card-body p-4">
+                        <h4 class="card-title">Why Upload Your Reports?</h4>
+                        <ul class="list-unstyled">
+                            <li class="d-flex mb-3">
+                                <div class="feature-icon bg-primary text-white rounded-circle me-3">
+                                    <i class="fas fa-cloud"></i>
+                                </div>
+                                <div>
+                                    <h6>Secure Cloud Storage</h6>
+                                    <p class="text-muted">Keep all your medical reports in one secure place</p>
+                                </div>
+                            </li>
+                            <li class="d-flex mb-3">
+                                <div class="feature-icon bg-primary text-white rounded-circle me-3">
+                                    <i class="fas fa-share-alt"></i>
+                                </div>
+                                <div>
+                                    <h6>Easy Sharing</h6>
+                                    <p class="text-muted">Share reports with healthcare providers instantly</p>
+                                </div>
+                            </li>
+                            <li class="d-flex mb-3">
+                                <div class="feature-icon bg-primary text-white rounded-circle me-3">
+                                    <i class="fas fa-history"></i>
+                                </div>
+                                <div>
+                                    <h6>Medical History</h6>
+                                    <p class="text-muted">Track your health records chronologically</p>
+                                </div>
+                            </li>
+                            <li class="d-flex">
+                                <div class="feature-icon bg-primary text-white rounded-circle me-3">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div>
+                                    <h6>Health Insights</h6>
+                                    <p class="text-muted">Get basic analysis of your medical data</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card shadow border-0">
+                    <div class="card-body p-4">
+                        <h4 class="card-title">Need Help?</h4>
+                        <p>Our team is available to assist you with uploading and understanding your medical reports.</p>
+                        <div class="d-grid">
+                            <button class="btn btn-outline-primary mb-2" id="contactSupportBtn">
+                                <i class="fas fa-headset me-2"></i> Contact Support
+                            </button>
+                            <button class="btn btn-outline-primary" id="openChatbotFromReportPage">
+                                <i class="fas fa-robot me-2"></i> Ask AI Assistant
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/report.js') }}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Open chatbot from help section
+        document.getElementById('openChatbotFromReportPage').addEventListener('click', function() {
+            document.getElementById('chatbotToggle').click();
+        });
+        
+        // Contact support button
+        document.getElementById('contactSupportBtn').addEventListener('click', function() {
+            window.location.href = "{{ url_for('contact') }}";
+        });
+    });
+</script>
+{% endblock %}
