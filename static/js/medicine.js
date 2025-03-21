@@ -1,5 +1,5 @@
 /**
- * MedAssist - Medicine Ordering JavaScript
+ * WellNow - Medicine Ordering JavaScript
  * Handles medicine search, filtering, and ordering
  */
 

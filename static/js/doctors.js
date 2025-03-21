@@ -1,5 +1,5 @@
 /**
- * MedAssist - Doctors Search JavaScript
+ * WellNow - Doctors Search JavaScript
  * Handles doctor search and filtering
  */
 
@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                             <h5>Contact Information</h5>
                                             <p><i class="fas fa-map-marker-alt text-primary me-2"></i> ${doctor.location}</p>
                                             <p><i class="fas fa-phone text-primary me-2"></i> (555) 123-4567</p>
-                                            <p><i class="fas fa-envelope text-primary me-2"></i> dr.${doctor.name.split(' ')[1].toLowerCase()}@medassist.health</p>
+                                            <p><i class="fas fa-envelope text-primary me-2"></i> dr.${doctor.name.split(' ')[1].toLowerCase()}@wellnow.health</p>
                                             
                                             <h5>Education & Training</h5>
                                             <ul>

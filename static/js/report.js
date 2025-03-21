@@ -1,5 +1,5 @@
 /**
- * MedAssist - Report Scanning JavaScript
+ * WellNow - Report Scanning JavaScript
  * Handles report uploads and management
  */
 
