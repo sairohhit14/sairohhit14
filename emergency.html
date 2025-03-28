@@ -1,0 +1,377 @@
+{% extends 'base.html' %}
+
+{% block title %}WellNow - Emergency Services{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <div class="display-4 text-danger mb-3"><i class="fas fa-ambulance"></i></div>
+            <h1 class="text-danger">Emergency Services</h1>
+            <div class="alert alert-danger mt-3 d-inline-block">
+                <h4 class="mb-0"><i class="fas fa-exclamation-triangle me-2"></i> For immediate medical emergencies, call 911</h4>
+            </div>
+        </div>
+        
+        <div class="row mb-5">
+            <div class="col-md-6 mb-4 mb-md-0">
+                <div class="card shadow border-0 h-100">
+                    <div class="card-header bg-danger text-white">
+                        <h3 class="mb-0"><i class="fas fa-phone-alt me-2"></i> Emergency Contacts</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h5>Emergency Services</h5>
+                                    <p class="mb-0 text-muted">Police, Fire, Ambulance</p>
+                                </div>
+                                <a href="tel:911" class="btn btn-danger">
+                                    <i class="fas fa-phone-alt me-2"></i> 911
+                                </a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h5>Poison Control Center</h5>
+                                    <p class="mb-0 text-muted">For poison emergencies</p>
+                                </div>
+                                <a href="tel:18002221222" class="btn btn-danger">
+                                    <i class="fas fa-phone-alt me-2"></i> 1-800-222-1222
+                                </a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h5>Mental Health Crisis</h5>
+                                    <p class="mb-0 text-muted">National Suicide Prevention Lifeline</p>
+                                </div>
+                                <a href="tel:988" class="btn btn-danger">
+                                    <i class="fas fa-phone-alt me-2"></i> 988
+                                </a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h5>WellNow 24/7 Helpline</h5>
+                                    <p class="mb-0 text-muted">Medical guidance and assistance</p>
+                                </div>
+                                <a href="tel:18006337246" class="btn btn-primary">
+                                    <i class="fas fa-phone-alt me-2"></i> 1-800-WELLNOW
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card shadow border-0 h-100">
+                    <div class="card-header bg-danger text-white">
+                        <h3 class="mb-0"><i class="fas fa-hospital me-2"></i> Nearby Emergency Facilities</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <input type="text" id="locationInput" class="form-control mb-3" placeholder="Enter your location to find nearby facilities">
+                            <div class="d-grid">
+                                <button id="findFacilitiesBtn" class="btn btn-primary">
+                                    <i class="fas fa-search-location me-2"></i> Find Nearby Facilities
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div id="facilitiesList">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Downtown Medical Center</h5>
+                                    <p class="card-text"><i class="fas fa-map-marker-alt text-danger me-2"></i> 123 Main Street, Downtown</p>
+                                    <p class="card-text"><i class="fas fa-phone-alt text-danger me-2"></i> (555) 123-4567</p>
+                                    <p class="mb-2"><span class="badge bg-success">Open 24/7</span></p>
+                                    <div class="d-flex">
+                                        <a href="#" class="btn btn-outline-primary me-2">
+                                            <i class="fas fa-directions me-1"></i> Directions
+                                        </a>
+                                        <a href="tel:5551234567" class="btn btn-primary">
+                                            <i class="fas fa-phone-alt me-1"></i> Call
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">West Side Hospital</h5>
+                                    <p class="card-text"><i class="fas fa-map-marker-alt text-danger me-2"></i> 456 West Avenue, West Side</p>
+                                    <p class="card-text"><i class="fas fa-phone-alt text-danger me-2"></i> (555) 987-6543</p>
+                                    <p class="mb-2"><span class="badge bg-success">Open 24/7</span></p>
+                                    <div class="d-flex">
+                                        <a href="#" class="btn btn-outline-primary me-2">
+                                            <i class="fas fa-directions me-1"></i> Directions
+                                        </a>
+                                        <a href="tel:5559876543" class="btn btn-primary">
+                                            <i class="fas fa-phone-alt me-1"></i> Call
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mb-5">
+            <div class="col-12">
+                <div class="card shadow border-0">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="mb-0"><i class="fas fa-first-aid me-2"></i> Emergency First Aid Guidelines</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="accordion" id="emergencyAccordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Heart Attack
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#emergencyAccordion">
+                                    <div class="accordion-body">
+                                        <h5>Signs and Symptoms:</h5>
+                                        <ul>
+                                            <li>Chest pain or discomfort</li>
+                                            <li>Pain radiating to arm, shoulder, jaw, or back</li>
+                                            <li>Shortness of breath</li>
+                                            <li>Cold sweat, nausea, or lightheadedness</li>
+                                        </ul>
+                                        <h5>Immediate Actions:</h5>
+                                        <ol>
+                                            <li>Call 911 immediately</li>
+                                            <li>Have the person sit or lie down in a comfortable position</li>
+                                            <li>Loosen any tight clothing</li>
+                                            <li>If the person is not allergic to aspirin and has no condition that would make it unsafe, give them one aspirin to chew (if advised by emergency services)</li>
+                                            <li>Stay with the person until emergency services arrive</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Stroke
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#emergencyAccordion">
+                                    <div class="accordion-body">
+                                        <h5>Remember FAST:</h5>
+                                        <ul>
+                                            <li><strong>F</strong>ace: Ask the person to smile. Does one side of the face droop?</li>
+                                            <li><strong>A</strong>rms: Ask the person to raise both arms. Does one arm drift downward?</li>
+                                            <li><strong>S</strong>peech: Ask the person to repeat a simple phrase. Is speech slurred or strange?</li>
+                                            <li><strong>T</strong>ime: If you see any of these signs, call 911 immediately.</li>
+                                        </ul>
+                                        <h5>Immediate Actions:</h5>
+                                        <ol>
+                                            <li>Call 911 immediately</li>
+                                            <li>Note the time when symptoms first appeared</li>
+                                            <li>Do not give the person anything to eat or drink</li>
+                                            <li>Have the person lie down with their head slightly elevated</li>
+                                            <li>Stay with the person until emergency services arrive</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Severe Bleeding
+                                    </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#emergencyAccordion">
+                                    <div class="accordion-body">
+                                        <h5>Immediate Actions:</h5>
+                                        <ol>
+                                            <li>Call 911 for serious bleeding</li>
+                                            <li>Apply direct pressure to the wound with a clean cloth, bandage, or piece of clothing</li>
+                                            <li>If possible, raise the wounded area above the level of the heart</li>
+                                            <li>Continue to apply pressure until emergency services arrive</li>
+                                            <li>If blood soaks through, add more layers without removing the first layer</li>
+                                        </ol>
+                                        <div class="alert alert-warning">
+                                            <i class="fas fa-exclamation-triangle me-2"></i> Do not apply a tourniquet unless you have proper training.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingFour">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                        Choking
+                                    </button>
+                                </h2>
+                                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#emergencyAccordion">
+                                    <div class="accordion-body">
+                                        <h5>For Conscious Adults and Children:</h5>
+                                        <ol>
+                                            <li>Stand behind the person and slightly to one side</li>
+                                            <li>Support their chest with one hand and lean them forward</li>
+                                            <li>Give up to 5 sharp blows between their shoulder blades with the heel of your hand</li>
+                                            <li>If the obstruction doesn't clear, stand behind them and place your arms around their waist</li>
+                                            <li>Place your clenched fist just above their belly button, thumb-side in</li>
+                                            <li>Grasp your fist with your other hand and pull sharply inward and upward</li>
+                                            <li>Repeat up to 5 times (abdominal thrusts)</li>
+                                            <li>If the obstruction still doesn't clear, continue alternating between 5 back blows and 5 abdominal thrusts</li>
+                                            <li>Call 911 if the obstruction doesn't clear</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6 mb-4 mb-md-0">
+                <div class="card shadow border-0 h-100">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="mb-0"><i class="fas fa-kit-medical me-2"></i> Emergency Kit Checklist</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Every home should have a basic emergency medical kit. Here's what to include:</p>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5>Basic Supplies</h5>
+                                <ul class="list-group list-group-flush mb-4">
+                                    <li class="list-group-item d-flex align-items-center">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check1">
+                                            <label class="form-check-label" for="check1">Adhesive bandages (various sizes)</label>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item d-flex align-items-center">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check2">
+                                            <label class="form-check-label" for="check2">Gauze pads and rolls</label>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item d-flex align-items-center">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check3">
+                                            <label class="form-check-label" for="check3">Adhesive tape</label>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item d-flex align-items-center">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check4">
+                                            <label class="form-check-label" for="check4">Scissors and tweezers</label>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item d-flex align-items-center">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check5">
+                                            <label class="form-check-label" for="check5">Antiseptic wipes</label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h5>Medications</h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-flex align-items-center">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check6">
+                                            <label class="form-check-label" for="check6">Pain relievers (acetaminophen, ibuprofen)</label>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item d-flex align-items-center">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check7">
+                                            <label class="form-check-label" for="check7">Antihistamines</label>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item d-flex align-items-center">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check8">
+                                            <label class="form-check-label" for="check8">Antibiotic ointment</label>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item d-flex align-items-center">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check9">
+                                            <label class="form-check-label" for="check9">Hydrocortisone cream</label>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item d-flex align-items-center">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check10">
+                                            <label class="form-check-label" for="check10">Personal medications</label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid gap-2 mt-3">
+                            <a href="#" class="btn btn-outline-primary">
+                                <i class="fas fa-print me-2"></i> Print Checklist
+                            </a>
+                            <a href="{{ url_for('medicine') }}" class="btn btn-primary">
+                                <i class="fas fa-shopping-cart me-2"></i> Order Emergency Kit Supplies
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card shadow border-0 h-100">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="mb-0"><i class="fas fa-user-md me-2"></i> Emergency Telemedicine</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Need urgent medical advice but not an ambulance? Connect with a doctor immediately via video consultation.</p>
+                        
+                        <div class="text-center my-4">
+                            <div class="doctor-availability badge bg-success p-2 mb-3">
+                                <i class="fas fa-circle me-2"></i> Doctors Available Now
+                            </div>
+                            <p class="lead">Current wait time: <strong>~2 minutes</strong></p>
+                        </div>
+                        
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title">When to use Emergency Telemedicine:</h5>
+                                <ul class="mb-0">
+                                    <li>Minor injuries and illnesses</li>
+                                    <li>Medication questions</li>
+                                    <li>Non-life-threatening situations</li>
+                                    <li>When you're unsure if you need to go to the ER</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="card mb-4 bg-danger text-white">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fas fa-exclamation-triangle me-2"></i> Do NOT use for:</h5>
+                                <ul class="mb-0">
+                                    <li>Chest pain or difficulty breathing</li>
+                                    <li>Severe bleeding or trauma</li>
+                                    <li>Signs of stroke</li>
+                                    <li>Unconsciousness</li>
+                                    <li>Any life-threatening emergency</li>
+                                </ul>
+                                <p class="mt-3 mb-0"><strong>Call 911 for these situations</strong></p>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid">
+                            <a href="{{ url_for('booking') }}" class="btn btn-success btn-lg">
+                                <i class="fas fa-video me-2"></i> Start Emergency Consultation
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
