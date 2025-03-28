@@ -3,7 +3,9 @@ import logging
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase
+from dotenv import load_dotenv
 
+load_dotenv(override=True,dotenv_path="./params.env")
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
 
